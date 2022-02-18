@@ -24,7 +24,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Recipe Details App</h1>
+          <h1>Recipe App</h1>
         </header>
         <SearchBar onSubmit={this.searchRecipe}/>
         <Recipes recipes={this.state.recipes} />
