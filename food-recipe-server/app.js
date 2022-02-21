@@ -1,11 +1,14 @@
 const express=require("express");
 const app=express();
 const PORT=5000;
-const User=require("./models/user");
-const Recipe=require("./models/foodRecipe");
+
+const userRouter=require("./routes/userRouter");
 require("dotenv").config();
 const connectDB=require("./config/db");
 connectDB();
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use("/users",userRouter);
 app.get("/",(req,res)=>{
     res.send("Food Recipe App Server");
 })
