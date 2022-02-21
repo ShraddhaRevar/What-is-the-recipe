@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import SearchBar from './components/Search';
-import Recipes from './components/Recipes';
+import Recipes from './components/Recipe';
 //hello food//
 class App extends React.Component {
   constructor(props){
