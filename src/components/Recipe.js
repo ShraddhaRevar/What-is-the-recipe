@@ -1,6 +1,5 @@
 import React from 'react';
-import Recipe from './ViewRecipe';
-
+import Recipe from "./Recipes"
 function Recipes(props) {
   return (
     <div className="container">
