@@ -13,6 +13,7 @@ class App extends React.Component {
   } 
 
   searchRecipe(recipeName){
+    
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${recipeName}`)
     .then(response=>response.json())
     .then(data=>

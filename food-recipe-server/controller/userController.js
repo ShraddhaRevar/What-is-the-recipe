@@ -62,4 +62,19 @@ const userProfile=(req,res,next)=>{
     })
 }
 
-module.exports={userLogin,userRegister,userProfile}; 
+const updateProfile=async(req,res)=>{
+    const user=await User.findById(req.params.userId);
+    if(user){
+        user.username=req.body.username;
+        user.email=req.body.email;
+        user.password=req.body.password;
+        await user.save();
+        res.status(200).json(user);
+    }else{
+        res.status(400).json({
+            message:"User not found"
+        })
+    }
+
+}
+module.exports={userLogin,userRegister,userProfile,updateProfile}; 
