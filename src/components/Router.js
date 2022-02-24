@@ -6,8 +6,9 @@ import {
 } from "react-router-dom";
 
 import App from './../App';
-import RecipeDetail from "./RecipeDetail";
-
+import Login from './Login';
+import Register from './Register';
+import Food from "./Food";
 function Router() {
     return (
         <BrowserRouter>
@@ -17,10 +18,9 @@ function Router() {
                     path="/" 
                     component={App} 
                 />
-                <Route 
-                    path="/recipe/:id" 
-                    component={RecipeDetail} 
-                />
+                <Route path="/login" component={Login}/>
+                <Route path="/register" component={Register}/>
+                <Route path="/findRecipe" component={Food}/>
             </Switch>
         </BrowserRouter>
     );
