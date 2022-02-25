@@ -1,7 +1,20 @@
-import React from 'react'
+import React,{useState,} from 'react'
 import Header from './Header';
-
 const Login = () => {
+  const [email,setEmail]=useState('');
+  const [password,setPassword]=useState('');
+  const handleInputEmail=(e)=>{
+    setEmail(e.target.value);
+  }
+  const handleInputPassword=(e)=>{
+    setPassword(e.target.value);
+  }
+  const handleSubmit=(e)=>{
+      e.preventDefault();
+      console.log("Email :",email);
+      console.log("Password :",password);
+      
+  }
   return (
     <div>
     <Header/>
@@ -28,17 +41,17 @@ const Login = () => {
         <p>Enter your credentials to access your account</p>
       </div>
       <form action="">
-        <div className="user">
-          <i className="bx bxs-user-circle"></i>
-          <input type="text" placeholder="Enter your username" />
+        <div className="email">
+          <i className="bx bxs-envelope"></i>
+          <input type="email" placeholder="Enter your Email Id" onChange={handleInputEmail} value={email}  />
         </div>
         <div className="pass">
           <i className="bx bxs-lock-alt"></i>
-          <input type="password" placeholder="Enter your password" />
+          <input type="password" placeholder="Enter your password" onChange={handleInputPassword} value={password} />
         </div>
       </form>
-      <div className="btn">
-        <button>Sign in</button>
+      <div className="btn" onClick={handleSubmit}>
+        <button>Login</button>
       </div>
     </div>
     </body>
