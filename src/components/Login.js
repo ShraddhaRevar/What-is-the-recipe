@@ -1,6 +1,11 @@
-import React,{useState,} from 'react'
+import React,{useState} from 'react'
 import Header from './Header';
+import ToastNotification from '../services/ToastNotification';
+import { ToastContainer } from 'material-react-toastify';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
+  let navigate=useNavigate();
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
   const handleInputEmail=(e)=>{
@@ -9,14 +14,31 @@ const Login = () => {
   const handleInputPassword=(e)=>{
     setPassword(e.target.value);
   }
-  const handleSubmit=(e)=>{
+  const handleSubmit=async(e)=>{
       e.preventDefault();
-      console.log("Email :",email);
-      console.log("Password :",password);
+      
+      const config={
+        headers:{
+          'Content-Type':'application/json'
+        }
+      }
+      const {data}=await axios.post("http://localhost:5000/users/login",{email,password},config);
+      console.log("Daata :",data);
+      if(data.message){
+        ToastNotification.showErrorMessage(
+          "bottom-center",
+          data.message 
+        )
+      }else{
+        navigate("/foodLibrary");
+      }
+
+      
       
   }
   return (
     <div>
+    <ToastContainer/>
     <Header/>
     <head>
     <meta charset="UTF-8" />
@@ -34,6 +56,7 @@ const Login = () => {
       rel="stylesheet"
     />
       </head>
+      
     <body>
     <div className="container" style={{height:"400px"}}>
       <div className="top-header">

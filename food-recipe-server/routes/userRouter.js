@@ -4,7 +4,7 @@ const {userLogin,userRegister,userProfile, updateProfile}=require("../controller
 const {protect,validUser}=require("../middleware/authMiddleware");
 
 router.get("/register",userRegister);
-router.get("/login",userLogin);
+router.post("/login",userLogin);
 router.get("/profile",protect,userProfile);
 router.post("/updateProfile/:userId",protect,validUser,updateProfile);
 

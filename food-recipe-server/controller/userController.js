@@ -1,23 +1,21 @@
 const generateToken=require("../utils/generateTokens")
 const User=require("../models/user");
 const userLogin=async(req,res)=>{
-    const {email,username,password}=req.body;
+    const {email,password}=req.body;
     const user=await User.findOne({email});
     if(user){
         if(!(await user.matchPassword(password))){
-            res.status(500)
             res.json({
                 message:"Password is incorrect"
             })
         }else if(user&&await(user.matchPassword(password))){
             res.json({
-                username,
+                username:user.username,
                 id:user._id,
                 token:generateToken(user._id)
             })
         }
     }else{
-        res.status(401)
         res.json({
             message:"User does not exists"
         })

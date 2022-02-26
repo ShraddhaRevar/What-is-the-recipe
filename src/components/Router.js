@@ -1,27 +1,27 @@
 import React from 'react';
-import {
-    BrowserRouter,
-    Switch,
-    Route
-} from "react-router-dom";
-
+import { BrowserRouter , Routes, Route} from 'react-router-dom';
+import FoodLibrary from './FoodLibrary';
 import App from './../App';
 import Login from './Login';
 import Register from './Register';
 import Food from "./Food";
+
 function Router() {
     return (
         <BrowserRouter>
-            <Switch>
+                <Routes>
                 <Route 
                     exact 
                     path="/" 
-                    component={App} 
+                    element={<App/>} 
                 />
-                <Route path="/login" component={Login}/>
-                <Route path="/register" component={Register}/>
-                <Route path="/findRecipe" component={Food}/>
-            </Switch>
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/register" element={<Register/>}/>
+                <Route path="/findRecipe" element={<Food/>}/>
+                <Route path="/foodLibary" element={<FoodLibrary/>}/>
+                </Routes>
+                
+        
         </BrowserRouter>
     );
 }
