@@ -4,9 +4,12 @@ import ToastNotification from '../services/ToastNotification';
 import { ToastContainer } from 'material-react-toastify';
 import "material-react-toastify/dist/ReactToastify.css";
 import "../Register.css";
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 const Register = () => {
+  const navigate=useNavigate();
   const [username,setUsername]=useState('');
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
@@ -23,7 +26,7 @@ const Register = () => {
   const handleConfirmPassword=(e)=>{
     setConfirmPassword(e.target.value);
   }
-  const handleSubmit=(e)=>{
+  const handleSubmit=async(e)=>{
     e.preventDefault();
     if(password!==confirmPassword){
       ToastNotification.showErrorMessage(
@@ -31,8 +34,22 @@ const Register = () => {
         "Password and Confirm Password do not match"
       );
     }else{
-      console.log("Username :",username);
-
+      const config={
+        headers:{
+          'Content-Type':'application/json'
+        }
+      }
+      const {data}=await axios.post("http://localhost:5000/users/register",{username,password,email},config);
+      console.log("Register Data :",data);
+      if(data.message){
+        ToastNotification.showErrorMessage(
+          "bottom-center",
+          data.message 
+        )
+      }else{
+        localStorage.setItem("userInfo",JSON.stringify(data));
+        navigate("/foodLibrary");
+      }
     }
   }
 

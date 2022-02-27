@@ -23,21 +23,19 @@ const Login = () => {
         }
       }
       const {data}=await axios.post("http://localhost:5000/users/login",{email,password},config);
-      console.log("Daata :",data);
+    
       if(data.message){
         ToastNotification.showErrorMessage(
           "bottom-center",
           data.message 
         )
       }else{
+        localStorage.setItem("userInfo",JSON.stringify(data));
         navigate("/foodLibrary");
       }
-
-      
-      
   }
   return (
-    <div>
+    <>
     <ToastContainer/>
     <Header/>
     <head>
@@ -78,7 +76,7 @@ const Login = () => {
       </div>
     </div>
     </body>
-    </div>
+    </>
     
   
   )
