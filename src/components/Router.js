@@ -5,6 +5,7 @@ import App from './../App';
 import Login from './Login';
 import Register from './Register';
 import Food from "./Food";
+import Profile from './Profile';
 
 function Router() {
     const token=useRef(null)
@@ -30,7 +31,10 @@ function Router() {
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/findRecipe" element={<Food/>}/>
                 {token?(
+                    <>
                     <Route path="/foodLibrary" element={<FoodLibrary/>}/>
+                    <Route path="/userProfile/:id" element={<Profile/>}/>
+                    </>  
                 ):(<Route path="/" element={<App/>}/>)}
                 
                 </Routes>

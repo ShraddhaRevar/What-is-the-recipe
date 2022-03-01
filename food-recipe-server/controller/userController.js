@@ -53,10 +53,11 @@ const userLogin=async(req,res)=>{
    
 }
 const userProfile=(req,res,next)=>{
+    console.log("Request User :",req.user);
     res.status(200).json({
         message:"Welcome to the user Profile page",
-        username:req.body.username,
-        email:req.body.email
+        username:req.user.username,
+        email:req.user.email
     })
 }
 

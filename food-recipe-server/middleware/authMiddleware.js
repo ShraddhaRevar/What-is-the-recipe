@@ -20,7 +20,8 @@ const protect=async(req,res,next)=>{
     }
 }
 const validUser=async(req,res,next)=>{
-    if(req.params.userID===req.user._id){
+    if(req.params.userId===req.user._id.toString()){
+        
         return next();
     }
     res.status(404).json({

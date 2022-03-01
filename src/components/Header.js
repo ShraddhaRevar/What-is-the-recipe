@@ -4,15 +4,16 @@ import { useNavigate } from 'react-router-dom';
 const Header = () => {
   const navigate=useNavigate();
   const [userName,setUserName]=useState('');
+  const [userId,setuserId]=useState('');
   const [userPresent,setUserPresent]=useState(false);
   useEffect(()=>{
     const userInfo=JSON.parse(localStorage.getItem("userInfo"));
     if(userInfo){
       setUserPresent(true);
+      setuserId(userInfo.id);
       setUserName(userInfo.username);
-      console.log("Username from header :",userName);
     }
-  },[userName]);
+  },[userName,userId]);
   const handleLogout=()=>{
     localStorage.removeItem("userInfo");
     navigate("/");
@@ -33,8 +34,7 @@ const Header = () => {
       <Nav.Link href="/findRecipe">Browse Recipe</Nav.Link>
       {userPresent&&(
         <>
-        <Nav.Link style={{
-        }}> username: {userName}</Nav.Link>
+        <Nav.Link href={`/userProfile/${userId}`}> username: {userName}</Nav.Link>
         <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
         </>
        
