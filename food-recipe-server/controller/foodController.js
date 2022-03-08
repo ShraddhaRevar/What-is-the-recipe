@@ -4,8 +4,10 @@ const Food=require("../models/foodRecipe");
 const addRecipe=async(req,res)=>{
     const food=new Food({
         recipeName:req.body.recipeName,
+        procedure:req.body.procedure,
         ingredient:req.body.ingredient,
         foodImage:req.body.foodImage,
+        videoLink:req.body.videoLink,
         user:req.params.userId
     })
     await food.save();
@@ -19,9 +21,22 @@ const deleteRecipe=async(req,res)=>{
         message:"Recipe has been successfully removed"
     })
 }
+
+const getRecipe=async(req,res)=>{
+    const food=await Food.findById(req.params.foodId);
+    if(food){
+        res.status(200).json(food);
+    }else{
+        res.status(404).json({
+            message:"Recipe not found"
+        })
+    } 
+}
+
 const updateRecipe=async(req,res)=>{
     const food=await Food.findById(req.params.foodId);
     if(food){
+        food.procedure=req.body.procedure;
         food.recipeName=req.body.recipeName;
         food.ingredients=req.body.ingredients;
         food.foodImage=req.body.foodImage;
@@ -50,4 +65,4 @@ const getRecipes=async(req,res)=>{
 
 }
 
-module.exports={getRecipes,addRecipe,deleteRecipe,updateRecipe}
+module.exports={getRecipes,addRecipe,deleteRecipe,updateRecipe,getRecipe}

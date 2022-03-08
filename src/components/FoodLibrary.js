@@ -1,7 +1,29 @@
-import React from 'react'
+/* eslint-disable array-callback-return */
+import React,{useEffect,useState} from 'react'
 import Header from './Header'
-
+import axios from 'axios';
+import Recipe from "./Recipe";
 const FoodLibrary = () => {
+  const [favourites,setFavorites]=useState([]);
+
+  useEffect(()=>{
+    const userInfo=JSON.parse(localStorage.getItem("userInfo"));
+    const {id,token}=userInfo;
+
+    const config={
+      headers:{
+        'Content-Type':'application/json',
+        'Authorization':`Bearer ${token}`
+      }
+    }
+     const fetchFavoriteRecipes=async()=>{
+       const {data}=await axios.get(`http://localhost:5000/foods/${id}`,config);
+       console.log("User Fav recipes :",data.recipes);
+
+       setFavorites(data.recipes);
+     }
+     fetchFavoriteRecipes();
+  },[])
 
   
   return (
@@ -24,7 +46,17 @@ const FoodLibrary = () => {
       rel="stylesheet"
     />
       </head>
-    <div>Welcome to FoodLibrary</div>
+    <h1 style={{textAlign:"center"}}>Favorites</h1>
+    <div >
+    {favourites.map((recipes)=>(
+      <>
+      <Recipe style={{display:"flex",float:"left"}} recipes={recipes}/>
+      <br/>
+      </>
+    
+    ))}
+    </div>
+    
     </>
    
   )
