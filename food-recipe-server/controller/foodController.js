@@ -38,9 +38,10 @@ const updateRecipe=async(req,res)=>{
     if(food){
         food.procedure=req.body.procedure;
         food.recipeName=req.body.recipeName;
-        food.ingredients=req.body.ingredients;
+        food.ingredient=req.body.ingredient;
         food.foodImage=req.body.foodImage;
         food.user=req.params.userId;
+        console.log("Food from backend : ",food)
         await food.save();
         res.status(200).json(food);
     }else{

@@ -45,6 +45,7 @@ const EditRecipe = () => {
         e.preventDefault();
         const userInfo=JSON.parse(localStorage.getItem("userInfo"));
         const ingredientList=ingredients.split(",");
+        console.log("Ing list :",ingredientList)
         const config={
             headers:{
                 'Content-Type':'application/json',
@@ -65,6 +66,7 @@ const EditRecipe = () => {
                 "Recipe has been successfully updated into your Library"
             )
         }
+        console.log("Updated Data : ",data);
     }
   return (
     <div>

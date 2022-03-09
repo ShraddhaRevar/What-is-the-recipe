@@ -49,7 +49,6 @@ const Recipe = (props) => {
     }
     const handleEdit=(e,fid)=>{
         e.preventDefault();
-        console.log("Edit food id :",fid);
         navigate(`/editRecipe/${fid}`);
     }
 
