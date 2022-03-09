@@ -66,8 +66,9 @@ const Recipe = (props) => {
       rel="stylesheet"
         />
      </head>
-     <div className="col-md-4">
-     <Card  style={{marginLeft:"20%"}} className="recipes__box">
+     <div className='row'>
+     <div  style={{float:"left"}} className="col-md-4">
+     <Card  style={{display:"inline-flex", marginLeft:"20%"}} className="recipes__box">
      <Card.Img className="recipe__box-img" style={{width:"100%",height:"50%"}} variant="top" src={props.recipes.foodImage} alt={props.recipes.recipeName} />
      <Card.Body>
      <Card.Title>{props.recipes.recipeName}</Card.Title>
@@ -85,6 +86,8 @@ const Recipe = (props) => {
      </Card.Body>
      </Card>
      </div>
+     </div>
+    
     </>
   )
 }
