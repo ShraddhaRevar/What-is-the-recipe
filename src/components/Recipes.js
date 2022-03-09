@@ -7,7 +7,6 @@ const Recipes = () => {
     
     useEffect(()=>{
        dishLists.current=JSON.parse(localStorage.getItem("dishes"));
-       console.log("Dishes Array :",dishLists.current.meals);
      
     },[]);
   return (

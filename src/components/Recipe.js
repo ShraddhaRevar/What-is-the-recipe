@@ -25,7 +25,6 @@ const Recipe = (props) => {
     const handleDelete=async(e,fid)=>{
         e.preventDefault();
         const userInfo=JSON.parse(localStorage.getItem("userInfo"));
-        console.log("UserInfo :",userInfo);
         const config={
             headers:{
                 'Content-type':'application/json',

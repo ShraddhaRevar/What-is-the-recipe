@@ -18,7 +18,6 @@ const FoodLibrary = () => {
     }
      const fetchFavoriteRecipes=async()=>{
        const {data}=await axios.get(`http://localhost:5000/foods/${id}`,config);
-       console.log("User Fav recipes :",data.recipes);
 
        setFavorites(data.recipes);
      }

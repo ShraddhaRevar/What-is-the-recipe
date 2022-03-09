@@ -15,7 +15,6 @@ const Food = () => {
   }
   const handleSubmit=async(e)=>{
     e.preventDefault();
-    console.log("DishName :",dish);
      const {data}=await axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${dish}`);
     if(data.meals===null){
       ToastNotification.showErrorMessage(
@@ -24,7 +23,6 @@ const Food = () => {
       )
     }else{  
       darr=[...darr,data.meals];
-      console.log("Dish list array :",darr[0]);
       setDarr(darr)
     }
   }

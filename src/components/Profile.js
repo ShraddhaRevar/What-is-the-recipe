@@ -22,7 +22,6 @@ const Profile = () => {
         }
       }
       const {data}=await axios.get("http://localhost:5000/users/profile",config);
-      console.log("User Profile data from axios :",data);
       setUserName(data.username);
       setEmail(data.email);
     }
@@ -48,14 +47,12 @@ const Profile = () => {
           "Password and Confirm Password does not match"
         )
       }else{
-        console.log("tk value :",tvalue);
         const config={
           headers:{
             'Content-Type':'application/json',
             'Authorization':`Bearer ${tvalue}`
           }
         }
-        console.log("User Id :",userId);
         const {data}=await axios.post(`http://localhost:5000/users/updateProfile/${userId}`,{username,email,password},config);
         if(data.message){
           ToastNotification.showErrorMessage(

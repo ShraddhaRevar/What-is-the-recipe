@@ -16,9 +16,7 @@ function Router() {
         const userInfo=JSON.parse(localStorage.getItem("userInfo"));
         if(userInfo){
         token.current=userInfo.token;
-        if(token){
-            console.log("token value :",token);
-        }
+       
     }
         
     })

@@ -41,7 +41,6 @@ const updateRecipe=async(req,res)=>{
         food.ingredient=req.body.ingredient;
         food.foodImage=req.body.foodImage;
         food.user=req.params.userId;
-        console.log("Food from backend : ",food)
         await food.save();
         res.status(200).json(food);
     }else{

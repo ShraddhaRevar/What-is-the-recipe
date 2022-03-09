@@ -40,7 +40,6 @@ const Register = () => {
         }
       }
       const {data}=await axios.post("http://localhost:5000/users/register",{username,password,email},config);
-      console.log("Register Data :",data);
       if(data.message){
         ToastNotification.showErrorMessage(
           "bottom-center",

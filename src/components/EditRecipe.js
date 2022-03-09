@@ -15,7 +15,6 @@ const EditRecipe = () => {
 
     useEffect(()=>{
         const userInfo=JSON.parse(localStorage.getItem("userInfo"));
-        console.log("User ID ",userInfo.id);
         const config={
             headers:{
                 'Content-Type':'application/json',
@@ -24,7 +23,6 @@ const EditRecipe = () => {
         }
         const fetchRecipe=async()=>{
             const {data}=await axios.get(`http://localhost:5000/foods/${userInfo.id}/${fid}`,config);
-            console.log(data);
             setRecipeName(data.recipeName);
             setfoodImage(data.foodImage);
             setVideoLink(data.videoLink);
@@ -45,7 +43,6 @@ const EditRecipe = () => {
         e.preventDefault();
         const userInfo=JSON.parse(localStorage.getItem("userInfo"));
         const ingredientList=ingredients.split(",");
-        console.log("Ing list :",ingredientList)
         const config={
             headers:{
                 'Content-Type':'application/json',
@@ -66,7 +63,6 @@ const EditRecipe = () => {
                 "Recipe has been successfully updated into your Library"
             )
         }
-        console.log("Updated Data : ",data);
     }
   return (
     <div>
