@@ -3,6 +3,7 @@ import Header from './Header'
 import ToastNotification from '../services/ToastNotification';
 import { ToastContainer } from 'material-react-toastify';
 import axios from 'axios'
+import RecipeApp from '../services/RecipeApp';
 const Profile = () => {
   const [username,setUserName]=useState('');
   const [email,setEmail]=useState('');
@@ -21,7 +22,7 @@ const Profile = () => {
           'Authorization':`Bearer ${token}`
         }
       }
-      const {data}=await axios.get("http://localhost:5000/users/profile",config);
+      const {data}=await RecipeApp.get("/users/profile",config);
       setUserName(data.username);
       setEmail(data.email);
     }
@@ -53,7 +54,7 @@ const Profile = () => {
             'Authorization':`Bearer ${tvalue}`
           }
         }
-        const {data}=await axios.post(`http://localhost:5000/users/updateProfile/${userId}`,{username,email,password},config);
+        const {data}=await RecipeApp.post(`/users/updateProfile/${userId}`,{username,email,password},config);
         if(data.message){
           ToastNotification.showErrorMessage(
             "bottom-center",

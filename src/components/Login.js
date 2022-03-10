@@ -2,8 +2,8 @@ import React,{useState} from 'react'
 import Header from './Header';
 import ToastNotification from '../services/ToastNotification';
 import { ToastContainer } from 'material-react-toastify';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import RecipeApp from '../services/RecipeApp';
 const Login = () => {
   let navigate=useNavigate();
   const [email,setEmail]=useState('');
@@ -22,7 +22,7 @@ const Login = () => {
           'Content-Type':'application/json'
         }
       }
-      const {data}=await axios.post("http://localhost:5000/users/login",{email,password},config);
+      const {data}=await RecipeApp.post("/users/login",{email,password},config);
     
       if(data.message){
         ToastNotification.showErrorMessage(

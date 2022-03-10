@@ -4,6 +4,7 @@ import ToastNotification from '../services/ToastNotification';
 import { ToastContainer } from 'material-react-toastify';
 import axios from 'axios';
 import "../NewRecipe.css";
+import RecipeApp from '../services/RecipeApp';
 const NewRecipe = () => {
    
     let [recipeName,setRecipeName]=useState('');
@@ -30,7 +31,7 @@ const NewRecipe = () => {
             foodImage,
             videoLink
         }
-        const {data}=await axios.post(`http://localhost:5000/foods/${userInfo.id}`,body,config);
+        const {data}=await RecipeApp.post(`/foods/${userInfo.id}`,body,config);
         if(data){
             ToastNotification.showSuccessMessage(
                 "bottom-center",

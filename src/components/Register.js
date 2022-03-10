@@ -6,7 +6,7 @@ import "material-react-toastify/dist/ReactToastify.css";
 import "../Register.css";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import RecipeApp from '../services/RecipeApp';
 
 const Register = () => {
   const navigate=useNavigate();
@@ -39,7 +39,7 @@ const Register = () => {
           'Content-Type':'application/json'
         }
       }
-      const {data}=await axios.post("http://localhost:5000/users/register",{username,password,email},config);
+      const {data}=await RecipeApp.post("/users/register",{username,password,email},config);
       if(data.message){
         ToastNotification.showErrorMessage(
           "bottom-center",
