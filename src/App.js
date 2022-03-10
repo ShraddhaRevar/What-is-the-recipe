@@ -1,36 +1,40 @@
 import React from 'react';
-import './App.css';
-import SearchBar from './components/SearchBar';
-import Recipes from './components/Recipes';
-//hello food//
-class App extends React.Component {
-  constructor(props){
-    super(props);
-    this.searchRecipe = this.searchRecipe.bind(this);
-    this.state = {
-      recipes: []
-    };
-  } 
+import RecipeHome from "./images/RecipeHome.jpg";
 
-  searchRecipe(recipeName){
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${recipeName}`)
-    .then(response=>response.json())
-    .then(data=>
-      this.setState({
-      recipes: data.meals
-    }));
-  }
-  render(){
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h2 className="App-title">Recipe Search</h2>
-        </header>
-        <SearchBar onSubmit={this.searchRecipe}/>
-        <Recipes recipes={this.state.recipes} />
-      </div>    
-    );
-  }
+import Header from './components/Header';
+
+const App = () => {
+  return (
+    <>
+    <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap"
+      rel="stylesheet"
+    />
+      </head>
+    <div className='App'>
+      <Header/>
+    
+    </div>
+    <img style={{
+      width:"100%",
+      height:"100%"
+    }} src={RecipeHome} alt="recipeHome.jpeg"/>
+    </>
+    
+  
+   
+  )
 }
 
-export default App;
+export default App
