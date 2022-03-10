@@ -1,8 +1,8 @@
 /* eslint-disable array-callback-return */
 import React,{useEffect,useState} from 'react'
 import Header from './Header'
-import axios from 'axios';
 import Recipe from "./Recipe";
+import RecipeApp from '../services/RecipeApp';
 const FoodLibrary = () => {
   const [favourites,setFavorites]=useState([]);
 
@@ -17,7 +17,7 @@ const FoodLibrary = () => {
       }
     }
      const fetchFavoriteRecipes=async()=>{
-       const {data}=await axios.get(`http://localhost:5000/foods/${id}`,config);
+       const {data}=await RecipeApp.get(`/foods/${id}`,config);
 
        setFavorites(data.recipes);
      }

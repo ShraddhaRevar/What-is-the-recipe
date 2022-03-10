@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import ToastNotification from '../services/ToastNotification';
 import { ToastContainer } from 'material-react-toastify';
 import axios from 'axios';
+import RecipeApp from '../services/RecipeApp';
 const EditRecipe = () => {
     const params=useParams()
     const fid=params.fid;
@@ -22,7 +23,7 @@ const EditRecipe = () => {
             }
         }
         const fetchRecipe=async()=>{
-            const {data}=await axios.get(`http://localhost:5000/foods/${userInfo.id}/${fid}`,config);
+            const {data}=await RecipeApp.get(`/foods/${userInfo.id}/${fid}`,config);
             setRecipeName(data.recipeName);
             setfoodImage(data.foodImage);
             setVideoLink(data.videoLink);
@@ -56,7 +57,7 @@ const EditRecipe = () => {
             foodImage,
             videoLink
         }
-        const {data}=await axios.post(`http://localhost:5000/foods/${userInfo.id}/${fid}`,body,config);
+        const {data}=await RecipeApp.post(`/foods/${userInfo.id}/${fid}`,body,config);
         if(data){
             ToastNotification.showSuccessMessage(
                 "bottom-center",

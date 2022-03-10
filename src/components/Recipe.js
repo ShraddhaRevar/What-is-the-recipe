@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import ToastNotification from '../services/ToastNotification';
 import { ToastContainer } from 'material-react-toastify';
+import RecipeApp from '../services/RecipeApp';
 const Recipe = (props) => {
 
     
@@ -31,7 +32,7 @@ const Recipe = (props) => {
                 'Authorization':`Bearer ${userInfo.token}`
             }
         }
-        const {data}=await axios.delete(`http://localhost:5000/foods/${userInfo.id}/${fid}`,config);
+        const {data}=await RecipeApp.delete(`/foods/${userInfo.id}/${fid}`,config);
         if(data){
             ToastNotification.showSuccessMessage(
                 "bottom-center",
